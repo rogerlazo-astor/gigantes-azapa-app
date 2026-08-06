@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sponsors | Gigantes de Azapa Salta 2026</title>
+  <script src="config.js"></script>
+  <style>
+    body{margin:0;font-family:Arial,sans-serif;background:#0b0f14;color:#fff;min-height:100vh}
+    .topbanner{min-height:26vh;display:flex;align-items:flex-end;padding:80px 20px 28px;background:#111827}
+    .topbanner-content{width:min(1100px,100%);margin:0 auto}
+    h1{font-size:clamp(2.2rem,6vw,4rem);font-weight:900;margin:0 0 12px;line-height:.95}
+    h1 em{color:#f36b21;font-style:normal}
+    .lead{font-size:1rem;color:rgba(255,255,255,.82);margin-bottom:0;line-height:1.5;max-width:580px}
+    .main{width:min(1100px,100%);margin:0 auto;padding:32px 20px}
+
+    .video-section{border-radius:16px;overflow:hidden;margin-bottom:14px;background:#000;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+    .video-section video{width:100%;display:block;max-height:520px;object-fit:contain;background:#000}
+    .video-caption{text-align:center;margin-bottom:32px}
+    .video-caption h3{font-size:1.2rem;font-weight:900;margin:0 0 4px;color:#f36b21}
+    .video-caption p{font-size:.88rem;color:rgba(255,255,255,.7);margin:0}
+
+    .paquetes{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-bottom:32px}
+    .paquete{background:#111827;border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:24px;text-align:center;transition:transform .2s,box-shadow .2s}
+    .paquete:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(243,107,33,.2)}
+    .paquete.destacado{border-color:#f36b21;background:linear-gradient(135deg,#111827,#1a0a00)}
+    .paquete .medalla{font-size:2.5rem;margin-bottom:10px}
+    .paquete h2{font-size:1.2rem;font-weight:900;margin-bottom:6px}
+    .paquete .precio{font-size:2rem;font-weight:900;color:#f36b21;margin-bottom:16px}
+    .paquete .precio span{font-size:.8rem;color:rgba(255,255,255,.5);font-weight:400;display:block}
+    .paquete ul{list-style:none;padding:0;margin:0 0 20px;text-align:left}
+    .paquete ul li{padding:6px 0;font-size:.85rem;color:rgba(255,255,255,.75);border-bottom:1px solid rgba(255,255,255,.07)}
+    .paquete ul li::before{content:"✅ ";font-size:.8rem}
+    .btn{display:block;background:#f36b21;color:#fff;text-decoration:none;border-radius:10px;padding:12px;font-weight:900;font-size:.9rem;text-align:center;cursor:pointer;border:none;width:100%;font-family:inherit}
+    .btn:hover{background:#c2410c}
+    .beneficios{background:#111827;border-radius:14px;padding:28px;margin-bottom:24px}
+    .beneficios h2{font-size:1.3rem;font-weight:900;margin-bottom:16px;color:#f36b21}
+    .ben-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+    .ben-item{background:rgba(255,255,255,.05);border-radius:10px;padding:14px;text-align:center}
+    .ben-item .icon{font-size:1.6rem;margin-bottom:6px}
+    .ben-item p{font-size:.82rem;color:rgba(255,255,255,.7);margin:0;line-height:1.4}
+    .contacto{background:rgba(243,107,33,.1);border:1px solid rgba(243,107,33,.3);border-radius:12px;padding:24px;text-align:center}
+    .contacto h2{font-size:1.2rem;font-weight:900;margin-bottom:8px}
+    .contacto p{color:rgba(255,255,255,.75);font-size:.9rem;margin-bottom:16px;line-height:1.5}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;text-align:left}
+    label{display:grid;gap:5px;font-weight:700;font-size:.85rem}
+    input,select,textarea{border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:10px;font:inherit;font-size:.9rem;width:100%;box-sizing:border-box;background:rgba(255,255,255,.08);color:#fff}
+    .wide{grid-column:1/-1}
+    .result{margin-top:12px;border-radius:8px;padding:12px;background:#ecfdf5;color:#065f46;display:none}
+    @media(max-width:600px){.paquetes{grid-template-columns:1fr 1fr}.form-grid{grid-template-columns:1fr}.video-section video{max-height:300px}}
+    @media(max-width:400px){.paquetes{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<section class="topbanner">
+  <div class="topbanner-content">
+    <h1>Sé parte de la <em>gira</em></h1>
+    <p class="lead">Tu empresa viaja con nosotros a Salta 2026. Más de 80 personas, 5 días, partidos internacionales y Los Pumas vs Australia.</p>
+  </div>
+</section>
+
+<div class="main">
+
+  <div class="video-section">
+    <video autoplay muted loop playsinline controls>
+      <source src="niños llegando a jugar.mov" type="video/mp4">
+    </video>
+  </div>
+  <div class="video-caption">
+    <h3>🚌 Así reciben los niños cada viaje</h3>
+    <p>Tu apoyo hace posible que sigan viviendo experiencias como esta. Más que un club, una familia.</p>
+  </div>
+
+  <div class="beneficios">
+    <h2>¿Por qué ser sponsor?</h2>
+    <div class="ben-grid">
+      <div class="ben-item"><div class="icon">👕</div><p>Tu logo en la camiseta oficial que viaja a Argentina</p></div>
+      <div class="ben-item"><div class="icon">📱</div><p>Mención en redes sociales y grupos de WhatsApp del club</p></div>
+      <div class="ben-item"><div class="icon">🌐</div><p>Tu marca en la app oficial de la gira</p></div>
+      <div class="ben-item"><div class="icon">📜</div><p>Carta oficial del club con tu auspicio</p></div>
+      <div class="ben-item"><div class="icon">🏟</div><p>Visibilidad en partidos y actos protocolares en Salta</p></div>
+      <div class="ben-item"><div class="icon">🤝</div><p>Apoyo al deporte formativo y juvenil de Arica</p></div>
+    </div>
+  </div>
+
+  <div class="paquetes">
+    <div class="paquete">
+      <div class="medalla">🥉</div>
+      <h2>Bronce</h2>
+      <div class="precio">$50.000<span>CLP</span></div>
+      <ul>
+        <li>Logo en la app oficial</li>
+        <li>Mención en WhatsApp del club</li>
+        <li>Diploma digital de auspicio</li>
+        <li>Agradecimiento en redes</li>
+      </ul>
+      <button class="btn" onclick="elegir('Bronce','$50.000')">Elegir Bronce</button>
+    </div>
+    <div class="paquete">
+      <div class="medalla">🥈</div>
+      <h2>Plata</h2>
+      <div class="precio">$100.000<span>CLP</span></div>
+      <ul>
+        <li>Todo lo del Bronce</li>
+        <li>Logo en redes sociales</li>
+        <li>Mención en partido amistoso</li>
+        <li>Diploma enmarcado</li>
+      </ul>
+      <button class="btn" onclick="elegir('Plata','$100.000')">Elegir Plata</button>
+    </div>
+    <div class="paquete destacado">
+      <div class="medalla">🥇</div>
+      <h2>Oro</h2>
+      <div class="precio">$200.000<span>CLP</span></div>
+      <ul>
+        <li>Todo lo anterior</li>
+        <li>Logo en camiseta oficial</li>
+        <li>Banner en cancha Salta</li>
+        <li>Carta oficial del club</li>
+        <li>Story dedicada en redes</li>
+      </ul>
+      <button class="btn" onclick="elegir('Oro','$200.000')">Elegir Oro</button>
+    </div>
+    <div class="paquete">
+      <div class="medalla">⭐</div>
+      <h2>Principal</h2>
+      <div class="precio">$500.000<span>CLP</span></div>
+      <ul>
+        <li>Sponsor principal de la gira</li>
+        <li>Nombre en el nombre del viaje</li>
+        <li>Máxima visibilidad en todo</li>
+        <li>Paquete personalizado</li>
+        <li>Reunión con directiva</li>
+      </ul>
+      <button class="btn" onclick="elegir('Principal','$500.000')">Elegir Principal</button>
+    </div>
+  </div>
+
+  <div class="contacto">
+    <h2>📩 Quiero ser sponsor</h2>
+    <p>Completa el formulario y la directiva te contactará en menos de 24 horas.</p>
+    <form id="sponsorForm">
+      <div class="form-grid">
+        <label>Empresa / Nombre<input name="empresa" required placeholder="Nombre de tu empresa"></label>
+        <label>Paquete elegido<input name="paquete" id="paqueteElegido" placeholder="Elige arriba o escribe aquí"></label>
+        <label>Nombre contacto<input name="nombre" required placeholder="Tu nombre"></label>
+        <label>WhatsApp<input name="telefono" required placeholder="+56 9..."></label>
+        <label class="wide">Correo<input type="email" name="correo" placeholder="tu@empresa.cl"></label>
+        <label class="wide">Mensaje (opcional)<textarea name="mensaje" rows="3" placeholder="Cuéntanos sobre tu empresa o alguna consulta..."></textarea></label>
+      </div>
+      <br>
+      <button class="btn" type="submit">Enviar solicitud de auspicio</button>
+      <div class="result" id="result"></div>
+    </form>
+    <br>
+    <p style="font-size:.82rem;color:rgba(255,255,255,.5)">
+      También puedes escribirnos directo:<br>
+      📧 gigantesazapa.salta2026@gmail.com<br>
+      💳 Transferencias: Angélica Urbina González · BCI 01-999-124695-7
+    </p>
+  </div>
+</div>
+
+<script src="form-bridge.js"></script>
+<script>
+function elegir(paquete, precio){
+  document.getElementById('paqueteElegido').value = paquete + ' - ' + precio;
+  document.querySelector('.contacto').scrollIntoView({behavior:'smooth'});
+}
+document.getElementById('sponsorForm').addEventListener('submit', async(e)=>{
+  e.preventDefault();
+  const res = document.getElementById('result');
+  res.style.display='block'; res.textContent='Enviando...';
+  const data = Object.fromEntries(new FormData(e.currentTarget).entries());
+  data.action = 'sponsor';
+  const sent = await sendToGigantes(data);
+  res.textContent = sent.ok
+    ? '✅ Solicitud enviada. La directiva te contactará en menos de 24 horas. ¡Gracias por apoyar a los Gigantes!'
+    : '📋 Gracias por tu interés. Escríbenos a gigantesazapa.salta2026@gmail.com o al WhatsApp del club.';
+});
+</script>
+</body>
+</html>
