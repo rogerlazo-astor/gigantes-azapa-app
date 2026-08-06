@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Álbum del Equipo | Gigantes de Azapa Salta 2026</title>
+  <script src="config.js"></script>
+  <script src="form-bridge.js"></script>
+  <style>
+    body{margin:0;font-family:Arial,sans-serif;background:#0b0f14;color:#fff;min-height:100vh}
+    .hero{min-height:42vh;display:flex;align-items:flex-end;padding:80px 20px 32px;position:relative;overflow:hidden}
+    .hero-content{position:relative;z-index:1;width:min(1100px,100%);margin:0 auto}
+    h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:900;margin:0 0 12px;line-height:.95}
+    h1 em{color:#f36b21;font-style:normal}
+    .lead{font-size:1rem;color:rgba(255,255,255,.82);margin-bottom:0;line-height:1.5;max-width:600px}
+    .main{width:min(1100px,100%);margin:0 auto;padding:28px 20px}
+
+    .progreso-box{background:linear-gradient(135deg,#1a0a00,#111827);border:2px solid #f36b21;border-radius:16px;padding:24px;margin-bottom:28px;text-align:center}
+    .progreso-num{font-size:3rem;font-weight:900;color:#f36b21;line-height:1}
+    .progreso-label{font-size:.9rem;color:rgba(255,255,255,.7);margin-top:4px}
+    .progreso-barra{background:rgba(255,255,255,.1);border-radius:99px;height:14px;margin-top:16px;overflow:hidden}
+    .progreso-fill{background:linear-gradient(90deg,#f36b21,#ffb347);height:100%;border-radius:99px;transition:width .6s}
+
+    .categoria-bloque{margin-bottom:32px}
+    .categoria-titulo{font-size:1.2rem;font-weight:900;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid #f36b21;display:flex;align-items:center;gap:10px}
+    .categoria-titulo .count{background:#f36b21;color:#fff;border-radius:999px;padding:2px 12px;font-size:.8rem}
+    .grid-album{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:14px}
+
+    .card-jugador{position:relative;background:linear-gradient(135deg,#1a1f2e,#0d1117);border-radius:14px;padding:4px;text-align:center;transition:transform .25s,box-shadow .25s;border:3px solid;border-image:linear-gradient(135deg,#f36b21,#ffd700,#f36b21) 1}
+    .card-jugador:hover{transform:translateY(-6px) scale(1.03);box-shadow:0 14px 32px rgba(243,107,33,.4)}
+    .card-inner{background:#111827;border-radius:10px;padding:10px}
+    .foto-jugador{width:100%;aspect-ratio:1;border-radius:8px;object-fit:cover;margin-bottom:8px;background:#1a1f2e;display:block}
+    .nombre-jugador{font-size:.78rem;font-weight:800;line-height:1.3;color:#fff}
+    .sticker-badge{position:absolute;top:-8px;right:-8px;background:#f36b21;color:#fff;font-size:.65rem;font-weight:900;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.4);transform:rotate(12deg)}
+
+    .vacio{text-align:center;padding:60px 20px;color:rgba(255,255,255,.5)}
+    .vacio .icon{font-size:3rem;margin-bottom:14px}
+    .cta-inscribir{display:inline-flex;background:#f36b21;color:#fff;text-decoration:none;border-radius:10px;padding:12px 24px;font-weight:900;margin-top:16px}
+    @media(max-width:480px){.grid-album{grid-template-columns:repeat(3,1fr)}}
+  </style>
+</head>
+<body>
+<section class="hero">
+  <div class="hero-content">
+    <h1>Álbum del <em>equipo</em></h1>
+    <p class="lead">Conoce a todos los jugadores y delegación inscrita para la Gira Salta 2026. ¡Cada inscripción acerca al equipo completo!</p>
+  </div>
+</section>
+<div class="main">
+  <div class="progreso-box" id="progresoBox" style="display:none">
+    <div class="progreso-num" id="progresoNum">0</div>
+    <div class="progreso-label" id="progresoLabel">cromos del equipo completados</div>
+    <div class="progreso-barra"><div class="progreso-fill" id="progresoFill" style="width:0%"></div></div>
+  </div>
+  <div id="contenidoAlbum">
+    <div class="vacio">Cargando álbum del equipo...</div>
+  </div>
+</div>
+<script>
+const ORDEN_CATEGORIAS = ["M10","M12","M14","Classic","Adultos / Delegación","Sin categoria"];
+const META_PERSONAS = 80;
+
+function queryAlbum(){
+  return new Promise((resolve)=>{
+    const cb = "gigAlbum_" + Date.now();
+    const s = document.createElement("script");
+    const url = new URL(window.GIGANTES_APPS_SCRIPT_URL);
+    url.searchParams.set("action","album");
+    url.searchParams.set("callback", cb);
+    window[cb] = (d)=>{ delete window[cb]; s.remove(); resolve(d); };
+    s.onerror = ()=>{ delete window[cb]; s.remove(); resolve({ok:false}); };
+    s.src = url.toString();
+    document.body.appendChild(s);
+  });
+}
+
+async function render(){
+  const data = await queryAlbum();
+  const contenedor = document.getElementById("contenidoAlbum");
+  const progresoBox = document.getElementById("progresoBox");
+
+  if(!data || !data.ok || !data.jugadores || data.jugadores.length === 0){
+    contenedor.innerHTML = `<div class="vacio">
+      <div class="icon">🏉</div>
+      <p>Aún no hay jugadores con foto en el álbum.<br>¡Sé el primero en aparecer!</p>
+      <a class="cta-inscribir" href="inscripcion.html">Inscribirme ahora →</a>
+    </div>`;
+    return;
+  }
+
+  const jugadores = data.jugadores;
+
+  progresoBox.style.display = "block";
+  document.getElementById("progresoNum").textContent = jugadores.length;
+  document.getElementById("progresoLabel").textContent = `cromos completados de ${META_PERSONAS} esperados`;
+  const pct = Math.min(100, Math.round((jugadores.length / META_PERSONAS) * 100));
+  document.getElementById("progresoFill").style.width = pct + "%";
+
+  const grupos = {};
+  jugadores.forEach(j=>{
+    const cat = j.categoria || "Sin categoria";
+    if(!grupos[cat]) grupos[cat] = [];
+    grupos[cat].push(j);
+  });
+
+  let html = "";
+  const categoriasOrdenadas = Object.keys(grupos).sort((a,b)=>{
+    const ia = ORDEN_CATEGORIAS.indexOf(a), ib = ORDEN_CATEGORIAS.indexOf(b);
+    return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
+  });
+
+  categoriasOrdenadas.forEach(cat=>{
+    html += `<div class="categoria-bloque">
+      <div class="categoria-titulo">🏉 ${cat} <span class="count">${grupos[cat].length}</span></div>
+      <div class="grid-album">`;
+    grupos[cat].forEach((j,idx)=>{
+      html += `<div class="card-jugador">
+        <span class="sticker-badge">⭐</span>
+        <div class="card-inner">
+          <img class="foto-jugador" src="${j.foto}" alt="${j.nombre}" loading="lazy" onerror="this.src='https://placehold.co/200/f36b21/fff?text=🏉'">
+          <div class="nombre-jugador">${j.nombre}</div>
+        </div>
+      </div>`;
+    });
+    html += `</div></div>`;
+  });
+
+  contenedor.innerHTML = html;
+}
+
+render();
+</script>
+</body>
+</html>

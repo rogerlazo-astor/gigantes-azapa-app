@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Actividades solidarias | Gigantes de Azapa Salta 2026</title>
+  <script src="config.js"></script>
+  <script src="form-bridge.js"></script>
+  <style>
+    body{margin:0;font-family:Arial,sans-serif;background:#0b0f14;color:#fff;min-height:100vh}
+    .hero{min-height:48vh;display:flex;align-items:flex-end;padding:80px 20px 32px;position:relative;overflow:hidden}
+    .hero-content{position:relative;z-index:1;width:min(1100px,100%);margin:0 auto}
+    h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:900;margin:0 0 12px;line-height:.95}
+    h1 em{color:#f36b21;font-style:normal}
+    .lead{font-size:1rem;color:rgba(255,255,255,.82);margin-bottom:20px;line-height:1.5;max-width:600px}
+    .main{width:min(1100px,100%);margin:0 auto;padding:28px 20px}
+    .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-bottom:32px}
+    .card{background:#111827;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:20px;border-left:5px solid #f36b21}
+    .card h2{font-size:1.1rem;margin:0 0 8px;color:#f36b21}
+    .card p{font-size:.88rem;line-height:1.55;color:rgba(255,255,255,.75);margin:0 0 14px}
+    .card a, .card button{display:inline-flex;margin-top:4px;background:#f36b21;color:#fff;text-decoration:none;border-radius:8px;padding:8px 16px;font-weight:900;font-size:.85rem;border:none;cursor:pointer;font-family:inherit}
+
+    .panel{background:rgba(255,255,255,.97);color:#111;border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 18px 46px rgba(0,0,0,.28)}
+    .panel h2{margin:0 0 6px;font-size:1.3rem;color:#111}
+    .panel p.help{color:#6b7280;font-size:.9rem;margin:0 0 18px;line-height:1.5}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .wide{grid-column:1/-1}
+    label{display:grid;gap:5px;font-weight:800;font-size:.85rem;color:#374151}
+    input,select,textarea{border:1px solid #d1d5db;border-radius:8px;padding:11px;font:inherit;font-size:.9rem;width:100%;box-sizing:border-box;background:#fff;color:#111}
+    textarea{min-height:70px;resize:vertical}
+    .actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+    button.submit{min-height:44px;border:0;border-radius:10px;padding:12px 24px;background:#f36b21;color:#fff;font:inherit;font-size:.95rem;font-weight:900;cursor:pointer}
+    button.submit:hover{background:#c2410c}
+    .result{margin-top:14px;border-radius:10px;padding:14px;background:#ecfdf5;color:#065f46;display:none;line-height:1.6}
+
+    .aporte-opciones{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-bottom:4px}
+    .aporte-chip{border:2px solid #d1d5db;border-radius:8px;padding:10px;text-align:center;cursor:pointer;font-size:.8rem;font-weight:800;color:#374151;transition:.15s}
+    .aporte-chip.active{border-color:#f36b21;background:#fef3ec;color:#c2410c}
+    @media(max-width:600px){.form-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Actividades <em>solidarias</em></h1>
+      <p class="lead">Elige una actividad, anótate para trabajar y dinos qué puedes aportar. Cada apoyo acerca al equipo a Salta.</p>
+    </div>
+  </section>
+  <div class="main">
+    <div class="cards">
+      <div class="card">
+        <h2>🤝 Martes completos solidarios</h2>
+        <p>Venta semanal de completos, café y té para recaudar fondos. Ayuda en mesa, venta, cocina o cobrando.</p>
+        <button onclick="elegirActividad('Martes completos solidarios')">Anotarme ↓</button>
+      </div>
+      <div class="card">
+        <h2>🎰 Bingos solidarios</h2>
+        <p>4 eventos grandes. Puedes ayudar consiguiendo premios, vendiendo cartones o animando el bingo.</p>
+        <a href="bingos.html">Ir a bingos →</a>
+      </div>
+      <div class="card">
+        <h2>👕 Venta merchandising</h2>
+        <p>Poleras, gorros, vasos y más. Apoya vendiendo o difundiendo el catálogo en tus redes.</p>
+        <a href="merchandising.html">Ver catálogo →</a>
+      </div>
+      <div class="card">
+        <h2>🏢 Sponsors y empresas</h2>
+        <p>Contacta empresas locales que puedan aportar dinero, productos o servicios.</p>
+        <a href="sponsors.html">Ver paquetes →</a>
+      </div>
+      <div class="card">
+        <h2>💛 Hacer un aporte</h2>
+        <p>Transfiere el monto que puedas y regístralo. Cada peso cuenta para la meta de $50.000.000.</p>
+        <a href="aportes.html">Registrar aporte →</a>
+      </div>
+      <div class="card">
+        <h2>📊 Ver avance</h2>
+        <p>Revisa cuánto se ha recaudado y cuánto falta para llegar a la meta.</p>
+        <a href="avance.html">Ver meta →</a>
+      </div>
+    </div>
+
+    <div class="panel" id="formComision">
+      <h2>📋 Anotarme en una comisión de trabajo</h2>
+      <p class="help">Indica en qué actividad puedes ayudar, qué día te acomoda y qué puedes aportar (tiempo, ingredientes, premios, etc.)</p>
+      <form id="comisionForm">
+        <div class="form-grid">
+          <label>Nombre completo<input name="nombre" required placeholder="Tu nombre"></label>
+          <label>WhatsApp<input name="telefono" required placeholder="+56 9..."></label>
+          <label class="wide">Actividad
+            <select name="actividad" id="actividadSelect" required>
+              <option value="">Selecciona...</option>
+              <option>Martes completos solidarios</option>
+              <option>Bingo 1</option>
+              <option>Bingo 2</option>
+              <option>Bingo 3</option>
+              <option>Bingo 4</option>
+              <option>Venta de merchandising</option>
+              <option>Otra actividad</option>
+            </select>
+          </label>
+          <label class="wide">¿Cómo puedes ayudar?
+            <div class="aporte-opciones" id="aporteOpciones">
+              <div class="aporte-chip" data-val="Mano de obra (cocinar, vender, armar)">🙋 Mano de obra</div>
+              <div class="aporte-chip" data-val="Ingredientes o insumos">🥘 Ingredientes</div>
+              <div class="aporte-chip" data-val="Premios para bingo o rifa">🎁 Premios</div>
+              <div class="aporte-chip" data-val="Transporte o logística">🚐 Transporte</div>
+              <div class="aporte-chip" data-val="Difusión en redes">📱 Difusión</div>
+              <div class="aporte-chip" data-val="Dinero / aporte directo">💵 Dinero</div>
+            </div>
+            <input type="hidden" name="tipo_aporte" id="tipoAporte">
+          </label>
+          <label class="wide">Detalle de tu aporte<textarea name="detalle_aporte" placeholder="Ej: puedo llevar 2 kilos de pan, o ayudar 3 horas el día sábado, o donar una canasta para el bingo..."></textarea></label>
+          <label>¿Qué día puedes?<input name="dia_disponible" placeholder="Ej: sábados, después de las 18h"></label>
+          <label>Categoría de tu hijo/a (si aplica)
+            <select name="categoria_relacionada">
+              <option value="">No aplica</option>
+              <option>M10</option><option>M12</option><option>M14</option>
+              <option>Classic</option><option>Soy parte del staff</option>
+            </select>
+          </label>
+        </div>
+        <div class="actions">
+          <button class="submit" type="submit">✅ Anotarme en la comisión</button>
+        </div>
+        <div class="result" id="result"></div>
+      </form>
+    </div>
+  </div>
+<script>
+function elegirActividad(nombre){
+  document.getElementById('actividadSelect').value = nombre;
+  document.getElementById('formComision').scrollIntoView({behavior:'smooth'});
+}
+document.querySelectorAll('.aporte-chip').forEach(chip=>{
+  chip.addEventListener('click', ()=>{
+    document.querySelectorAll('.aporte-chip').forEach(c=>c.classList.remove('active'));
+    chip.classList.add('active');
+    document.getElementById('tipoAporte').value = chip.dataset.val;
+  });
+});
+document.getElementById('comisionForm').addEventListener('submit', async(e)=>{
+  e.preventDefault();
+  const res = document.getElementById('result');
+  res.style.display='block'; res.textContent='Registrando...';
+  const data = Object.fromEntries(new FormData(e.currentTarget).entries());
+  data.action = 'comision';
+  const sent = await sendToGigantes(data);
+  res.textContent = sent.ok
+    ? '✅ ¡Gracias! Quedaste anotado en la comisión. La directiva te contactará por WhatsApp para coordinar.'
+    : '📋 Anotación preparada. Avísale directamente a la directiva por WhatsApp para confirmar tu ayuda.';
+  if(sent.ok) e.currentTarget.reset();
+});
+</script>
+</body>
+</html>
