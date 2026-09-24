@@ -1,156 +1,58 @@
 <!doctype html>
-<html lang="es">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Actividades solidarias | Gigantes de Azapa Salta 2026</title>
-  <script src="config.js"></script>
-  <script src="form-bridge.js"></script>
-  <style>
-    body{margin:0;font-family:Arial,sans-serif;background:#0b0f14;color:#fff;min-height:100vh}
-    .hero{min-height:48vh;display:flex;align-items:flex-end;padding:80px 20px 32px;position:relative;overflow:hidden}
-    .hero-content{position:relative;z-index:1;width:min(1100px,100%);margin:0 auto}
-    h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:900;margin:0 0 12px;line-height:.95}
-    h1 em{color:#f36b21;font-style:normal}
-    .lead{font-size:1rem;color:rgba(255,255,255,.82);margin-bottom:20px;line-height:1.5;max-width:600px}
-    .main{width:min(1100px,100%);margin:0 auto;padding:28px 20px}
-    .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-bottom:32px}
-    .card{background:#111827;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:20px;border-left:5px solid #f36b21}
-    .card h2{font-size:1.1rem;margin:0 0 8px;color:#f36b21}
-    .card p{font-size:.88rem;line-height:1.55;color:rgba(255,255,255,.75);margin:0 0 14px}
-    .card a, .card button{display:inline-flex;margin-top:4px;background:#f36b21;color:#fff;text-decoration:none;border-radius:8px;padding:8px 16px;font-weight:900;font-size:.85rem;border:none;cursor:pointer;font-family:inherit}
-
-    .panel{background:rgba(255,255,255,.97);color:#111;border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 18px 46px rgba(0,0,0,.28)}
-    .panel h2{margin:0 0 6px;font-size:1.3rem;color:#111}
-    .panel p.help{color:#6b7280;font-size:.9rem;margin:0 0 18px;line-height:1.5}
-    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .wide{grid-column:1/-1}
-    label{display:grid;gap:5px;font-weight:800;font-size:.85rem;color:#374151}
-    input,select,textarea{border:1px solid #d1d5db;border-radius:8px;padding:11px;font:inherit;font-size:.9rem;width:100%;box-sizing:border-box;background:#fff;color:#111}
-    textarea{min-height:70px;resize:vertical}
-    .actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
-    button.submit{min-height:44px;border:0;border-radius:10px;padding:12px 24px;background:#f36b21;color:#fff;font:inherit;font-size:.95rem;font-weight:900;cursor:pointer}
-    button.submit:hover{background:#c2410c}
-    .result{margin-top:14px;border-radius:10px;padding:14px;background:#ecfdf5;color:#065f46;display:none;line-height:1.6}
-
-    .aporte-opciones{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-bottom:4px}
-    .aporte-chip{border:2px solid #d1d5db;border-radius:8px;padding:10px;text-align:center;cursor:pointer;font-size:.8rem;font-weight:800;color:#374151;transition:.15s}
-    .aporte-chip.active{border-color:#f36b21;background:#fef3ec;color:#c2410c}
-    @media(max-width:600px){.form-grid{grid-template-columns:1fr}}
-  </style>
-</head>
-<body>
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Actividades <em>solidarias</em></h1>
-      <p class="lead">Elige una actividad, anótate para trabajar y dinos qué puedes aportar. Cada apoyo acerca al equipo a Salta.</p>
-    </div>
-  </section>
-  <div class="main">
-    <div class="cards">
-      <div class="card">
-        <h2>🤝 Martes completos solidarios</h2>
-        <p>Venta semanal de completos, café y té para recaudar fondos. Ayuda en mesa, venta, cocina o cobrando.</p>
-        <button onclick="elegirActividad('Martes completos solidarios')">Anotarme ↓</button>
-      </div>
-      <div class="card">
-        <h2>🎰 Bingos solidarios</h2>
-        <p>4 eventos grandes. Puedes ayudar consiguiendo premios, vendiendo cartones o animando el bingo.</p>
-        <a href="bingos.html">Ir a bingos →</a>
-      </div>
-      <div class="card">
-        <h2>👕 Venta merchandising</h2>
-        <p>Poleras, gorros, vasos y más. Apoya vendiendo o difundiendo el catálogo en tus redes.</p>
-        <a href="merchandising.html">Ver catálogo →</a>
-      </div>
-      <div class="card">
-        <h2>🏢 Sponsors y empresas</h2>
-        <p>Contacta empresas locales que puedan aportar dinero, productos o servicios.</p>
-        <a href="sponsors.html">Ver paquetes →</a>
-      </div>
-      <div class="card">
-        <h2>💛 Hacer un aporte</h2>
-        <p>Transfiere el monto que puedas y regístralo. Cada peso cuenta para la meta de $50.000.000.</p>
-        <a href="aportes.html">Registrar aporte →</a>
-      </div>
-      <div class="card">
-        <h2>📊 Ver avance</h2>
-        <p>Revisa cuánto se ha recaudado y cuánto falta para llegar a la meta.</p>
-        <a href="avance.html">Ver meta →</a>
-      </div>
-    </div>
-
-    <div class="panel" id="formComision">
-      <h2>📋 Anotarme en una comisión de trabajo</h2>
-      <p class="help">Indica en qué actividad puedes ayudar, qué día te acomoda y qué puedes aportar (tiempo, ingredientes, premios, etc.)</p>
-      <form id="comisionForm">
-        <div class="form-grid">
-          <label>Nombre completo<input name="nombre" required placeholder="Tu nombre"></label>
-          <label>WhatsApp<input name="telefono" required placeholder="+56 9..."></label>
-          <label class="wide">Actividad
-            <select name="actividad" id="actividadSelect" required>
-              <option value="">Selecciona...</option>
-              <option>Martes completos solidarios</option>
-              <option>Bingo 1</option>
-              <option>Bingo 2</option>
-              <option>Bingo 3</option>
-              <option>Bingo 4</option>
-              <option>Venta de merchandising</option>
-              <option>Otra actividad</option>
-            </select>
-          </label>
-          <label class="wide">¿Cómo puedes ayudar?
-            <div class="aporte-opciones" id="aporteOpciones">
-              <div class="aporte-chip" data-val="Mano de obra (cocinar, vender, armar)">🙋 Mano de obra</div>
-              <div class="aporte-chip" data-val="Ingredientes o insumos">🥘 Ingredientes</div>
-              <div class="aporte-chip" data-val="Premios para bingo o rifa">🎁 Premios</div>
-              <div class="aporte-chip" data-val="Transporte o logística">🚐 Transporte</div>
-              <div class="aporte-chip" data-val="Difusión en redes">📱 Difusión</div>
-              <div class="aporte-chip" data-val="Dinero / aporte directo">💵 Dinero</div>
-            </div>
-            <input type="hidden" name="tipo_aporte" id="tipoAporte">
-          </label>
-          <label class="wide">Detalle de tu aporte<textarea name="detalle_aporte" placeholder="Ej: puedo llevar 2 kilos de pan, o ayudar 3 horas el día sábado, o donar una canasta para el bingo..."></textarea></label>
-          <label>¿Qué día puedes?<input name="dia_disponible" placeholder="Ej: sábados, después de las 18h"></label>
-          <label>Categoría de tu hijo/a (si aplica)
-            <select name="categoria_relacionada">
-              <option value="">No aplica</option>
-              <option>M10</option><option>M12</option><option>M14</option>
-              <option>Classic</option><option>Soy parte del staff</option>
-            </select>
-          </label>
-        </div>
-        <div class="actions">
-          <button class="submit" type="submit">✅ Anotarme en la comisión</button>
-        </div>
-        <div class="result" id="result"></div>
-      </form>
-    </div>
-  </div>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Manager de Actividades · Gigantes de Azapa</title><script src="config.js"></script><script src="form-bridge.js"></script>
+<style>
+:root{--o:#f36b21;--bg:#0b0f14;--p:#111827;--mut:#94a3b8;--g:#22c55e;--r:#ef4444;--y:#f59e0b}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:#fff}main{width:min(1120px,100%);margin:auto;padding:18px}
+a{color:inherit}.hero{padding:28px 0 14px}.hero h1{font-size:clamp(2.2rem,7vw,4.2rem);margin:0}.hero em{color:var(--o);font-style:normal}
+.card{background:var(--p);border:1px solid #263244;border-radius:15px;padding:16px;margin:12px 0}.top{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+.badge{padding:6px 10px;border-radius:999px;background:#243244;font-weight:bold;font-size:12px}.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.kpi{background:#161f2c;border-radius:12px;padding:12px}.kpi b{display:block;font-size:20px;color:var(--o)}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}
+.tabs button,.action{border:0;border-radius:10px;padding:10px 13px;font-weight:900;cursor:pointer}.tabs .on,.action{background:var(--o);color:#fff}
+.item{background:#fff;color:#111;border-radius:12px;padding:14px;margin:10px 0}.item .row{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.item h3{margin:0 0 5px;font-size:1rem}.small{font-size:12px;color:#64748b}.bar{height:10px;background:#e2e8f0;border-radius:10px;overflow:hidden;margin:9px 0}
+.bar span{height:100%;display:block;background:var(--o)}.ok .bar span{background:var(--g)}.ok h3:after{content:" ✅"}.section{display:none}.section.on{display:block}
+.roles{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.role{background:#fff;color:#111;padding:14px;border-radius:12px}
+dialog{border:0;border-radius:14px;width:min(520px,94vw);padding:0}dialog .box{padding:20px}label{display:block;font-weight:bold;margin:10px 0 5px}
+input,select,textarea{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:9px}.msg{padding:12px;border-radius:10px;background:#eff6ff;color:#1e3a8a;margin:10px 0}
+.nav{display:flex;gap:8px;flex-wrap:wrap}.nav a{background:#1f2937;padding:9px 12px;border-radius:9px;text-decoration:none;font-weight:bold}.ready{font-size:34px;font-weight:900}.meta-edit{display:flex;gap:8px;align-items:end;flex-wrap:wrap;margin-top:14px}.meta-edit label{margin:0}.meta-edit input{width:140px;background:#fff;color:#111}.meta-note{color:#94a3b8;font-size:12px}
+@media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}.roles{grid-template-columns:1fr}}
+</style></head><body><main>
+<div class="nav"><a href="index.html">← Inicio</a><a href="santiago.html">✈️ Santiago</a><a href="grupos.html">👥 Grupos A–D</a></div>
+<div class="hero"><div class="badge">GIRA SANTIAGO 2026</div><h1>Manager de <em>actividades</em></h1><p style="color:#cbd5e1">La app calcula lo necesario, recibe cooperaciones y muestra exactamente lo que falta.</p></div>
+<div class="card" id="summary">Cargando actividad...</div>
+<div class="tabs"><button class="on" data-tab="insumos">🥑 Insumos / equipos</button><button data-tab="personas">🙋 Equipo humano</button><button data-tab="faltantes">🔴 Faltantes</button><button data-tab="cierre">💰 Cierre / caja</button></div>
+<section id="insumos" class="section on"></section><section id="personas" class="section"></section><section id="faltantes" class="section"></section>
+<section id="cierre" class="section"><div class="item"><h3>💰 Cierre de actividad</h3><div class="small">Completar una sola vez terminada la venta.</div>
+<label>Unidades preparadas</label><input id="cPreparadas" type="number" min="0"><label>Unidades vendidas</label><input id="cVendidas" type="number" min="0">
+<label>Efectivo</label><input id="cEfectivo" type="number" min="0"><label>Transferencias</label><input id="cTransfer" type="number" min="0">
+<label>Gastos pagados</label><input id="cGastos" type="number" min="0"><label>Responsable</label><input id="cResponsable">
+<button class="action" style="margin-top:12px" id="saveClose">Guardar cierre</button></div></section>
+</main>
+<dialog id="dlgCoop"><form class="box" id="coopForm"><h2 id="coopTitle"></h2><div id="quotaMsg" class="msg"></div><input type="hidden" id="insumo">
+<label>Nombre / familia</label><input id="nombre" required><label>WhatsApp</label><input id="telefono" required>
+<label>Cantidad que aportas</label><input id="cantidad" type="number" min="1" required><div id="prep" class="msg"></div>
+<div style="display:flex;gap:8px;margin-top:14px"><button type="submit" class="action">✅ Confirmar aporte</button><button type="button" onclick="dlgCoop.close()">Cancelar</button></div></form></dialog>
+<dialog id="dlgRole"><form class="box" id="roleForm"><h2 id="roleTitle"></h2><input type="hidden" id="rol">
+<label>Nombre / familia</label><input id="rNombre" required><label>WhatsApp</label><input id="rTelefono" required><label>Horario / comentario</label><input id="rHorario">
+<div style="display:flex;gap:8px;margin-top:14px"><button type="submit" class="action">🙋 Anotarme</button><button type="button" onclick="dlgRole.close()">Cancelar</button></div></form></dialog>
 <script>
-function elegirActividad(nombre){
-  document.getElementById('actividadSelect').value = nombre;
-  document.getElementById('formComision').scrollIntoView({behavior:'smooth'});
-}
-document.querySelectorAll('.aporte-chip').forEach(chip=>{
-  chip.addEventListener('click', ()=>{
-    document.querySelectorAll('.aporte-chip').forEach(c=>c.classList.remove('active'));
-    chip.classList.add('active');
-    document.getElementById('tipoAporte').value = chip.dataset.val;
-  });
-});
-document.getElementById('comisionForm').addEventListener('submit', async(e)=>{
-  e.preventDefault();
-  const res = document.getElementById('result');
-  res.style.display='block'; res.textContent='Registrando...';
-  const data = Object.fromEntries(new FormData(e.currentTarget).entries());
-  data.action = 'comision';
-  const sent = await sendToGigantes(data);
-  res.textContent = sent.ok
-    ? '✅ ¡Gracias! Quedaste anotado en la comisión. La directiva te contactará por WhatsApp para coordinar.'
-    : '📋 Anotación preparada. Avísale directamente a la directiva por WhatsApp para confirmar tu ayuda.';
-  if(sent.ok) e.currentTarget.reset();
-});
-</script>
-</body>
-</html>
+const ACT_ID=new URLSearchParams(location.search).get('id')||'SCL-20260825-COMP',API=window.GIGANTES_APPS_SCRIPT_URL||'';let manager=null;
+const money=n=>new Intl.NumberFormat('es-CL',{style:'currency',currency:'CLP',maximumFractionDigits:0}).format(n||0);
+function jsonp(params){return new Promise((res,rej)=>{const cb='g'+Date.now()+Math.random().toString(36).slice(2),s=document.createElement('script');window[cb]=d=>{res(d);delete window[cb];s.remove()};params.callback=cb;s.src=API+'?'+new URLSearchParams(params);s.onerror=rej;document.body.appendChild(s)})}
+async function post(data){data.action=data.action||data.type;return await jsonp(data)}
+async function load(){if(!API){summary.innerHTML='<b>Falta URL de Apps Script en config.js.</b>';return}manager=await jsonp({action:'manager_actividad',id:ACT_ID});render()}
+function render(){if(!manager||!manager.ok){summary.textContent=manager?.message||'No se pudo cargar';return}const a=manager.actividad,rc=manager.recursos.filter(x=>x.completo).length,pc=manager.roles.filter(x=>x.completo).length;
+summary.innerHTML=`<div class="top"><div><span class="badge">Grupo ${a.grupo}</span><h2>${a.nombre}</h2><div style="color:#94a3b8">${a.fecha} · meta operativa ${a.meta_unidades} unidades</div><div class="meta-edit"><div><label for="metaOperativa">Meta editable</label><input id="metaOperativa" type="number" min="1" value="${a.meta_unidades}"></div><button class="action" id="saveMeta">Actualizar meta</button><div class="meta-note">Al cambiarla se recalculan insumos e ingreso potencial.</div></div></div><div class="ready">${manager.readiness}% LISTA</div></div><div class="kpis"><div class="kpi">Meta<b>${a.meta_unidades}</b></div><div class="kpi">Precio<b>${money(a.precio)}</b></div><div class="kpi">Ingreso potencial<b>${money(a.ingreso_potencial)}</b></div><div class="kpi">Recursos<b>${rc}/${manager.recursos.length}</b></div><div class="kpi">Roles<b>${pc}/${manager.roles.length}</b></div></div>`;
+const saveMeta=document.getElementById('saveMeta');
+if(saveMeta)saveMeta.onclick=async()=>{const nueva=Number(document.getElementById('metaOperativa').value||0);if(nueva<=0){alert('Ingresa una meta mayor que 0.');return}saveMeta.disabled=true;const x=await post({type:'actualizar_meta_actividad',actividad_id:ACT_ID,meta_unidades:nueva});alert(x.message||x.mensaje||'Meta actualizada');saveMeta.disabled=false;await load()};
+insumos.innerHTML=manager.recursos.map(r=>{const pct=r.requerido?Math.min(100,Math.round(r.aportado/r.requerido*100)):0;return `<div class="item ${r.completo?'ok':''}"><div class="row"><div><h3>${r.item}</h3><div class="small">${r.categoria} · ${r.como_llega}</div></div><b>${r.aportado}/${r.requerido} ${r.unidad}</b></div><div class="bar"><span style="width:${pct}%"></span></div><div class="row"><span>${r.completo?'Cuota completa':'Faltan '+r.faltante+' '+r.unidad}</span><button class="action" ${r.completo&&!r.permite_sobreaporte?'disabled':''} onclick='openCoop(${JSON.stringify(JSON.stringify(r))})'>${r.completo?'Completo':'YO COOPERO'}</button></div></div>`}).join('');
+personas.innerHTML='<div class="roles">'+manager.roles.map(r=>`<div class="role"><div class="row"><div><b>${r.rol}</b><div class="small">${r.anotados}/${r.requerido} personas</div></div><button class="action" ${r.completo?'disabled':''} onclick='openRole(${JSON.stringify(r.rol)})'>${r.completo?'Completo':'Me anoto'}</button></div></div>`).join('')+'</div>';
+faltantes.innerHTML=manager.sugerencias.length?manager.sugerencias.map(r=>`<div class="item"><div class="row"><div><h3>🔴 ${r.item}</h3><div class="small">${r.como_llega}</div></div><b>Faltan ${r.faltante} ${r.unidad}</b></div><button class="action" onclick='openCoop(${JSON.stringify(JSON.stringify(r))})'>Resolver</button></div>`).join(''):'<div class="item ok"><h3>Insumos cubiertos</h3></div>'}
+function openCoop(x){const r=JSON.parse(x);insumo.value=r.item;cantidad.value=Math.min(Math.max(r.faltante||1,1),50);cantidad.max=r.permite_sobreaporte?'':r.faltante;coopTitle.textContent='🤝 '+r.item;quotaMsg.textContent='Necesitamos '+r.requerido+' '+r.unidad+'. Faltan '+r.faltante+'.';prep.textContent='Debe llegar: '+r.como_llega;dlgCoop.showModal()}
+function openRole(r){rol.value=r;roleTitle.textContent='🙋 '+r;dlgRole.showModal()}
+coopForm.onsubmit=async e=>{e.preventDefault();const x=await post({type:'cooperacion',actividad_id:ACT_ID,insumo:insumo.value,cantidad:cantidad.value,nombre:nombre.value,telefono:telefono.value});alert(x.mensaje||x.message);dlgCoop.close();await load()}
+roleForm.onsubmit=async e=>{e.preventDefault();const x=await post({type:'rol_actividad',actividad_id:ACT_ID,rol:rol.value,nombre:rNombre.value,telefono:rTelefono.value,horario:rHorario.value});alert(x.mensaje||x.message);dlgRole.close();await load()}
+saveClose.onclick=async()=>{const x=await post({type:'resultado_actividad',actividad_id:ACT_ID,preparadas:cPreparadas.value,vendidas:cVendidas.value,efectivo:cEfectivo.value,transferencias:cTransfer.value,gastos:cGastos.value,responsable:cResponsable.value});alert(x.message||x.mensaje)}
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('.section').forEach(x=>x.classList.toggle('on',x.id===b.dataset.tab))});load();
+</script></body></html>
