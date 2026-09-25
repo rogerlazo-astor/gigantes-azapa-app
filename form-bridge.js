@@ -50,7 +50,7 @@ function injectTopbar(){
     <a href="${B}sponsors.html">🏢 Sponsors</a>
     <a href="${B}avance.html">📊 Avance de meta</a>
     <a href="${B}galeria_club.html">📸 Galería</a>
-    <a href="${B}directiva.html">🔐 Directiva</a>
+    <a href="${B}gestion/index.html">🧠 Control Center</a>\n    <a href="${B}directiva.html">🔐 Directiva</a>
     <a href="${B}index.html">🏠 Portada</a>`;
   document.body.appendChild(nav);
   document.addEventListener('click',e=>{const d=document.getElementById('gb-drawer');if(d&&!d.contains(e.target)&&!e.target.classList.contains('gb-btn'))d.classList.remove('open');});
